@@ -12,7 +12,7 @@ async function getAllArticles(req, res) {
 
   async function getArticleById(req, res) {
     const id = req.userId;
-    console.log('se obtiene el id del usuario', id); 
+    //console.log('se obtiene el id del usuario', id); 
     try {
       const articles = await articleService.getArticleById(id);
       return res.json(articles);
