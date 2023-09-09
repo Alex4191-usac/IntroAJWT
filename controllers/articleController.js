@@ -9,5 +9,16 @@ async function getAllArticles(req, res) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  async function getArticleById(req, res) {
+    const id = req.userId;
+    //console.log('se obtiene el id del usuario', id); 
+    try {
+      const articles = await articleService.getArticleById(id);
+      return res.json(articles);
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
   
-  module.exports = { getAllArticles };
+  module.exports = { getAllArticles, getArticleById };
