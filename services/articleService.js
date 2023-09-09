@@ -11,4 +11,15 @@ async function getAllArticles() {
   }
 }
 
-module.exports = { getAllArticles };
+async function getArticleById(userId) {
+  try {
+    const connection = await db.getConnection();
+    const [rows] = await connection.query('SELECT * FROM articles WHERE user_id = ?', [userId]);
+    connection.release();
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+module.exports = { getAllArticles, getArticleById };
